@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% load staticfiles %}
+
+{% block title %}TID{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-4">
+          <a href="{% url 'news' %}">
+            <span class="cases-nav">
+              <span class="cases-zh">所有动态</span>
+              <br>
+              <span class="cases-en">All Dynamic</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="col-xs-4">
+          <a href="{% url 'design' %}">
+            <span class="cases-nav">
+              <span class="cases-zh">设计&技术</span>
+              <br>
+              <span class="cases-en">Design & Technology</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="col-xs-4">
+          <a href="{% url 'internet' %}">
+            <span class="cases-nav cases-nav-last">
+              <span class="cases-zh">互联网&科技</span>
+              <br>
+              <span class="cases-en">Internet & Technology</span>
+            </span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  {% for news in latest_news_list %}
+    <div class="container">
+      <div class="news">
+        <div class="row">
+          <div class="col-lg-4 visible-lg">
+            <img src="{{ news.image.url }}" class="img-responsive">
+          </div>
+          <div class="col-lg-8">
+            {% if news.title|length > 22 %}
+              <h2>{{ news.title|slice:":22" }}...</h2>
+            {% else  %}
+              <h2>{{ news.title}}</h2>
+            {% endif %}
+            {% if news.description|length > 140 %}
+              <h4>{{ news.description|safe|slice:":140" }}...</h4>
+            {% else  %}
+              <h4>{{ news.description|safe }}</h4>
+            {% endif %}
+            <div class="row">
+              <div class="col-sm-9 col-xs-8">
+                <span>浏览次数:{{ news.views }}</span>
+              </div>
+              <div class="col-sm-3 col-xs-4">
+                <a class="btn btn-default" href="{% url 'blogs' news.id %}" role="button">查看详情<i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+  <div class="container">
+    <p class="fenye">
+      {# latest_news_list.paginator.page_range 这个函数返回包含一个所有页码数的 range 对象 #}
+      {# 即 range(1, latest_news_list.paginator.num_pages + 1) #}
+
+<!--       {% if latest_news_list.has_previous %}
+        <a href="?page={{ latest_news_list.previous_page_number }}">上一页</a>
+      {% endif %} -->
+
+      {% for page_number in latest_news_list.paginator.page_range %}
+        {% ifequal page_number  latest_news_list.number %}
+          <span>{{ page_number }}</span>
+        {% else %}
+          <a href="?page={{ page_number }}">{{ page_number }}</a>
+        {% endifequal %}
+      {% endfor %}
+
+<!--       {% if latest_news_list.has_next %}
+        <a href="?page={{ latest_news_list.next_page_number }}">下一页</a>
+      {% endif %} -->
+    </p>
+  </div>
+
+<!-- 
+  <div class="container">
+    <p>
+      {% if latest_news_list.has_previous %}
+        <a href="?page={{ latest_news_list.previous_page_number }}">上一页</a>
+      {% endif %}
+        {# latest_news_list.paginator.number_pages 返回总页数 #}
+        Page {{ latest_news_list.number }} of {{ latest_news_list.paginator.num_pages }}.
+      {% if latest_news_list.has_next %}
+        <a href="?page={{ latest_news_list.next_page_number }}">下一页</a>
+      {% endif %}
+      </p>
+  </div>
+ -->
+{% endblock %}

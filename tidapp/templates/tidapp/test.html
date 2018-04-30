@@ -1,0 +1,52 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test-tid</title>
+</head>
+<body>
+    {% for N in New|slice:"0:8" %}
+        <div class="col-sm-3 col-xs-6 news-list-father">
+            <a href="#">
+                <img class="img-responsive" src="{{ N.image.url }}">
+                <div class="news-list">
+                    <span class="project">/ 动态 /</span>
+                    <br>
+                    <span class="duties">{{ N.title }}</span>
+                    <br>
+                    <span class="project">{{ N.pub_date|date:"Y.m.d" }}</span>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+    {% for N in New|slice:"8:16" %}
+        <div class="col-sm-3 col-xs-6 news-list-father">
+            <a href="#">
+                <img class="img-responsive" src="{{ N.image.url }}">
+                <div class="news-list">
+                    <span class="project">/ 动态 /</span>
+                    <br>
+                    <span class="duties">{{ N.title }}</span>
+                    <br>
+                    <span class="project">{{ N.pub_date|date:"Y.m.d" }}</span>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+    {% for N in New|slice:"16:24" %}
+        <div class="col-sm-3 col-xs-6 news-list-father">
+            <a href="#">
+                <img class="img-responsive" src="{{ N.image.url }}">
+                <div class="news-list">
+                    <span class="project">/ 动态 /</span>
+                    <br>
+                    <span class="duties">{{ N.title }}</span>
+                    <br>
+                    <span class="project">{{ N.pub_date|date:"Y.m.d" }}</span>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</body>
+</html>

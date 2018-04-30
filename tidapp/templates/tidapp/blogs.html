@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% load staticfiles %}
+
+{% block title %}TID{% endblock %}
+
+{% block content %}
+    <div class="container blogs-breadcrumb">
+      <div class="pull-right">
+        <a href="{% url 'news' %}">所有动态</a>
+        <a href="{% url 'design' %}">设计&技术</a>
+        <a href="{% url 'internet' %}">互联网&科技</a>
+      </div>
+      <a href="{% url 'news' %}"><span>返回</span></a>
+    </div>
+
+    <div class="container blogs-infor">
+      <div class="pull-right hidden-xs">
+        <span>分享给小伙伴：</span>
+        <a href='javascript:window.open("http://s.jiathis.com/?webid=tqq&url={% url 'blogs' blogs.id %}&title={{ blogs.title }}&uid=&jid=&pic=&summary=,天聚创想网站建设是一家运用互联网思维建设网络平台的新型网站建设公司，初创团队来自腾讯、迅雷、阿里巴巴，团队具有深厚的互联网背景与经验，专业的网站建设团队为您提供深...", "腾讯网ishare", "height=600, width=560,toolbar=no,menubar=no,scrollbars=no,resizable=yes,location=no,status=no,top=200,left=200")' class="tqq" title="分享到腾讯微博"><i class="fa fa-tencent-weibo fa-lg"></i></a>
+        <a href='javascript:window.open("http://s.jiathis.com/?webid=tsina&url={% url 'blogs' blogs.id %}&title={{ blogs.title }}&uid=&jid=&pic=&summary=,天聚创想网站建设是一家运用互联网思维建设网络平台的新型网站建设公司，初创团队来自腾讯、迅雷、阿里巴巴，团队具有深厚的互联网背景与经验，专业的网站建设团队为您提供深...", "新浪网ishare", "height=600, width=560,toolbar=no,menubar=no,scrollbars=no,resizable=yes,location=no,status=no,top=200,left=200")' class="tsina" title="分享到腾讯微博"><i class="fa fa-weibo fa-lg"></i></a>
+        <a href='javascript:window.open("http://s.jiathis.com/?webid=qzone&url=http://www.guangfan.com/11243.html&title={{ blogs.title }}&uid=&jid=&pic=&summary=,天聚创想网站建设是一家运用互联网思维建设网络平台的新型网站建设公司，初创团队来自腾讯、迅雷、阿里巴巴，团队具有深厚的互联网背景与经验，专业的网站建设团队为您提供深...", "腾讯网ishare", "height=600, width=560,toolbar=no,menubar=no,scrollbars=no,resizable=yes,location=no,status=no,top=200,left=200")' class="qzone" title="分享到腾讯微博"><i class="fa fa-star fa-lg"></i></a>
+        <a href='javascript:window.open("http://s.jiathis.com/?webid=renren&url=http://www.guangfan.com/11243.html&title={{ blogs.title }}&uid=&jid=&pic=&summary=,天聚创想网站建设是一家运用互联网思维建设网络平台的新型网站建设公司，初创团队来自腾讯、迅雷、阿里巴巴，团队具有深厚的互联网背景与经验，专业的网站建设团队为您提供深...", "腾讯网ishare", "height=600, width=560,toolbar=no,menubar=no,scrollbars=no,resizable=yes,location=no,status=no,top=200,left=200")' class="renren" title="分享到腾讯微博"><i class="fa fa-renren fa-lg"></i></a>
+        <a id="weixin-contact" href="#"><i class="fa fa-wechat fa-lg"></i><span id="pop-up"><img src="http://s.jiathis.com/qrcode.php?url={% url 'blogs' blogs.id %}"></span></a>
+      </div>
+      <div>
+        <h1>{{ blogs.title }}</h1>
+        <h4>{{ blogs.pub_date|date:"Y.m.d" }} / 动态 / TID</h4>
+      </div>
+    </div>
+
+    <div class="container">
+
+    </div>
+
+    <div class="container blogs-detail">
+      <p>{{ blogs.description|safe }}</p>
+    </div>
+
+    <div class="container">
+      <div id="tid-carousel2" class="carousel carousel-fade slide carousel-sec" data-ride="carousel">
+        
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <div class="row">
+
+            {% for news in latest_news_list|slice:"0:4" %}
+              <div class="col-sm-3 col-xs-6 news-list-father">
+                <a href="{% url 'blogs' news.id %}">
+                  <img class="img-responsive" src="{{ news.image.url }}" alt="sec-carousel1">
+                  <div class="news-list">
+                    <span class="project">/ 动态 /</span>
+                    <br>
+                    {% if news.title|length > 10 %}
+                      <span class="duties">{{ news.title|slice:":6" }}...</span>
+                    {% else  %}
+                      <span class="duties">{{ news.title }}</span>
+                    {% endif %}
+                    <br>
+                    <span class="project">{{ news.pub_date|date:"Y.m.d" }}</span>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+
+            {% for news in latest_news_list|slice:"4:8" %}
+              <div class="col-sm-3 col-xs-6 news-list-father">
+                <a href="{% url 'blogs' news.id %}">
+                  <img class="img-responsive" src="{{ news.image.url }}" alt="sec-carousel1">
+                  <div class="news-list">
+                    <span class="project">/ 动态 /</span>
+                    <br>
+                    {% if news.title|length > 10 %}
+                      <span class="duties">{{ news.title|slice:":6" }}...</span>
+                    {% else  %}
+                      <span class="duties">{{ news.title }}</span>
+                    {% endif %}
+                    <br>
+                    <span class="project">{{ news.pub_date|date:"Y.m.d" }}</span>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+
+            {% for news in latest_news_list|slice:"8:12" %}
+              <div class="col-sm-3 col-xs-6 news-list-father">
+                <a href="{% url 'blogs' news.id %}">
+                  <img class="img-responsive" src="{{ news.image.url }}" alt="sec-carousel1">
+                  <div class="news-list">
+                    <span class="project">/ 动态 /</span>
+                    <br>
+                    {% if news.title|length > 10 %}
+                      <span class="duties">{{ news.title|slice:":6" }}...</span>
+                    {% else  %}
+                      <span class="duties">{{ news.title }}</span>
+                    {% endif %}
+                    <br>
+                    <span class="project">{{ news.pub_date|date:"Y.m.d" }}</span>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+
+            </div>
+          </div>
+
+        </div>
+        <a class="left carousel-control work-control" id="carousel-icon" href="#tid-carousel2" role="button" data-slide="prev">
+          <img class="tid-angle-left visible-lg" src="{% static 'tidapp/img/tid-angle-left.png' %}">
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control work-control" id="carousel-icon" href="#tid-carousel2" role="button" data-slide="next">
+          <img class="tid-angle-right visible-lg" src="{% static 'tidapp/img/tid-angle-right.png' %}">
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+{% endblock %}

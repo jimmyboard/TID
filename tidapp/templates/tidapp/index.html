@@ -1,0 +1,291 @@
+{% extends "layout.html" %}
+
+{% load staticfiles %}
+
+{% block title %}TID{% endblock %}
+
+{% block content %}
+    <div  class="container">
+      <h2 class="tid-intro">运用互联网思维建设网络平台的新型网络公司</h2>
+      <h4 class="tid-intro2">专注于尖端品牌网站建设，互联网品牌整合，H5活动定制，微信深度定制，网络营销策划<br/>服务热线：0755-88601289  33574697</h4>
+    </div>
+
+    <!-- 1st Carousel -->
+    <div class="container star">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img src="{% static 'tidapp/img/jumbotron-pic.jpg' %}" alt="jumbotron-pic">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="{% static 'tidapp/img/jumbotron-pic.jpg' %}" alt="jumbotron-pic">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="{% static 'tidapp/img/jumbotron-pic.jpg' %}" alt="jumbotron-pic">
+            <div class="carousel-caption">
+            </div>
+          </div>
+        </div>
+        <a class="left carousel-control" id="carousel-icon" href="#carousel-example-generic" role="button" data-slide="prev">
+          <img class="tid-angle-left visible-lg" src="{% static 'tidapp/img/tid-angle-left.png' %}">
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" id="carousel-icon" href="#carousel-example-generic" role="button" data-slide="next">
+          <img class="tid-angle-right visible-lg" src="{% static 'tidapp/img/tid-angle-right.png' %}">
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <!-- End Carousel -->
+
+    <div class="container hack-title">
+      <h2>我们的案例</h2>
+      <h4>TID不仅是一家设计与技术服务公司，更是一家具备深厚互联网背景的公司，TID会给予客户更多互联网思维与方法，让客户在互联网+时代找到发展的路径，这是TID的价值所在。
+      </h4>
+    </div>
+
+    <!-- 2nd Carousel -->
+    <div class="container">
+      <div id="tid-carousel" class="carousel carousel-fade slide carousel-sec star" data-ride="carousel">
+        <ol class="carousel-indicators" id="sec-indicators">
+          <li data-target="#tid-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#tid-carousel" data-slide-to="1"></li>
+          <li data-target="#tid-carousel" data-slide-to="2"></li>
+        </ol>
+        
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <div class="row">
+              {% for cases in latest_cases_list|slice:"0:6" %}
+              <div class="col-sm-4 col-xs-6 overlay-father" id="col">
+                <a href="{% url 'work' cases.id %}">
+                  <span class="overlay-mom">
+                    <img class="img-responsive" src="{{ cases.image.url }}">
+                    <span class="overlay hidden-xs">
+                        <img src="{% static 'tidapp/img/al_icon.png' %}" alt="al_icon" class="img-responsive">
+                        <br>
+                        {% if cases.title|length > 16 %}
+                          <span class="project">{{ cases.title|slice:":16 " }}...</span>
+                        {% else  %}
+                          <span class="project">{{ cases.title }}</span>
+                        {% endif %}
+                        <br>
+                        <span class="duties">{{ cases.title2 }}</span>
+                      </span>
+                  </span>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+
+          <div class="item">
+            <div class="row">
+              {% for cases in latest_cases_list|slice:"6:12" %}
+              <div class="col-sm-4 col-xs-6 overlay-father" id="col">
+                <a href="{% url 'work' cases.id %}">
+                  <span class="overlay-mom">
+                    <img class="img-responsive" src="{{ cases.image.url }}">
+                    <span class="overlay hidden-xs">
+                        <img src="{% static 'tidapp/img/al_icon.png' %}" alt="al_icon" class="img-responsive">
+                        <br>
+                        {% if cases.title|length > 16 %}
+                          <span class="project">{{ cases.title|slice:":16 " }}...</span>
+                        {% else  %}
+                          <span class="project">{{ cases.title }}</span>
+                        {% endif %}
+                        <br>
+                        <span class="duties">品牌规划 / 网站设计 / 技术开发</span>
+                      </span>
+                  </span>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+              {% for cases in latest_cases_list|slice:"12:18" %}
+              <div class="col-sm-4 col-xs-6 overlay-father" id="col">
+                <a href="{% url 'work' cases.id %}">
+                  <span class="overlay-mom">
+                    <img class="img-responsive" src="{{ cases.image.url }}">
+                    <span class="overlay hidden-xs">
+                        <img src="{% static 'tidapp/img/al_icon.png' %}" alt="al_icon" class="img-responsive">
+                        <br>
+                        {% if cases.title|length > 16 %}
+                          <span class="project">{{ cases.title|slice:":16 " }}...</span>
+                        {% else  %}
+                          <span class="project">{{ cases.title }}</span>
+                        {% endif %}
+                        <br>
+                        <span class="duties">品牌规划 / 网站设计 / 技术开发</span>
+                      </span>
+                  </span>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <!-- End 2nd Carousel -->
+
+    <div class="container">
+      <p class="tid-more"><a href="#">查看更多案例</a></p>
+    </div>
+
+    <div class="container hack-title">
+      <h2>TID服务的客户</h2>
+      <h4>
+      在TID,90%的客户源于老客户的口碑传播，无数国内外大品牌公司都选择与TID合作，彼此成就与发展。合作过的案例有:探鱼，横琴自贸区，国美控股，加拿大留学生协会，深圳招商局，腾讯WSD
+      </h4>
+    </div>
+
+    <div class="container">
+      <img class="img-responsive" src="{% static 'tidapp/img/partner-logo.jpg' %}" alt="c-logo">
+    </div>
+
+    <div class="container hack-title">
+      <h2>新闻资讯</h2>
+      <h4>
+      在这样一个快速发展的时代，TID不会安常守故，TID每天洞察行业趋势，是一家有生命的公司。
+      </h4>
+    </div>
+
+    <!-- 3rd Carousel -->
+    <div class="container">
+      <div id="tid-carousel2" class="carousel carousel-fade slide carousel-sec star" data-ride="carousel">
+        <ol class="carousel-indicators" id="sec-indicators">
+          <li data-target="#tid-carousel2" data-slide-to="0" class="active"></li>
+          <li data-target="#tid-carousel2" data-slide-to="1"></li>
+          <li data-target="#tid-carousel2" data-slide-to="2"></li>
+        </ol>
+        
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <div class="row">
+              {% for news in latest_news_list|slice:"0:8" %}
+                  <div class="col-sm-3 col-xs-6 news-list-father">
+                      <a href="{% url 'blogs' news.id %}">
+                          <img class="img-responsive" src="{{ news.image.url }}">
+                          <div class="news-list">
+                              <span class="project">/ 动态 /</span>
+                              <br>
+                              {% if news.title|length > 10 %}
+                                <span class="duties">{{ news.title|slice:":6" }}...</span>
+                              {% else  %}
+                                <span class="duties">{{ news.title }}</span>
+                              {% endif %}
+                              <br>
+                              <span class="project">{{ news.pub_date|date:"Y.m.d" }}</span>
+                          </div>
+                      </a>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+              {% for news in latest_news_list|slice:"8:16" %}
+                  <div class="col-sm-3 col-xs-6 news-list-father">
+                      <a href="{% url 'blogs' news.id %}">
+                          <img class="img-responsive" src="{{ news.image.url }}">
+                          <div class="news-list">
+                              <span class="project">/ 动态 /</span>
+                              <br>
+                              {% if news.title|length > 10 %}
+                                <span class="duties">{{ news.title|slice:":6" }}...</span>
+                              {% else  %}
+                                <span class="duties">{{ news.title }}</span>
+                              {% endif %}
+                              <br>
+                              <span class="project">{{ news.pub_date|date:"Y.m.d" }}</span>
+                          </div>
+                      </a>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+              {% for news in latest_news_list|slice:"16:24" %}
+                  <div class="col-sm-3 col-xs-6 news-list-father">
+                      <a href="{% url 'blogs' news.id %}">
+                          <img class="img-responsive" src="{{ news.image.url }}">
+                          <div class="news-list">
+                              <span class="project">/ 动态 /</span>
+                              <br>
+                              {% if news.title|length > 10 %}
+                                <span class="duties">{{ news.title|slice:":6" }}...</span>
+                              {% else  %}
+                                <span class="duties">{{ news.title }}</span>
+                              {% endif %}
+                              <br>
+                              <span class="project">{{ news.pub_date|date:"Y.m.d" }}</span>
+                          </div>
+                      </a>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End 3rd Carousel -->
+
+    <div class="container">
+      <p class="tid-more"><a href="#">查看更多咨询</a></p>
+    </div>
+
+    <div class="container tid-address">
+      <div class="row">
+        <div class="col-sm-4">
+          <p>TID.China</p>
+          <p>CENTER</p>
+        </div>
+        <div class="col-sm-4">
+          <p>中国 · 深圳 · 福田区</p>
+          <p>雕塑家园27楼24号</p>
+        </div>
+        <div class="col-sm-4">
+          <p>电话：0755-88601289</p>
+          <p>邮箱：tid@sztid.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container tid-fl">
+      <span>友情链接：</span>
+      <span>淘宝网</span>
+      <span>京东</span>
+      <span>阿里巴巴</span>
+      <span>淘宝网</span>
+      <span>京东</span>
+      <span>阿里巴巴</span>
+      <span>淘宝网</span>
+      <span>京东</span>
+      <span>阿里巴巴</span>
+      <span>淘宝网</span>
+      <span>京东</span>
+      <span>阿里巴巴</span>
+      <span>淘宝网</span>
+    </div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% load staticfiles %}
+
+{% block title %}TID{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-3" id="cases-col">
+          <a href="{% url 'cases' %}">
+            <span class="cases-nav">
+            <span class="cases-zh">所有项目</span>
+            <br>
+            <span class="cases-en">All the items</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="col-xs-3" id="cases-col">
+          <a href="{% url 'uiux' %}">
+            <span class="cases-nav">
+              <span class="cases-zh">UI/UX</span>
+              <br>
+              <span class="cases-en">ui/ux</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="col-xs-3" id="cases-col">
+          <a href="{% url 'application' %}">
+            <span class="cases-nav">
+              <span class="cases-zh">应用程序</span>
+              <br>
+              <span class="cases-en">The application</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="col-xs-3" id="cases-col">
+          <a href="{% url 'website_design' %}">
+            <span class="cases-nav cases-nav-last">
+              <span class="cases-zh">网站设计</span>
+              <br>
+              <span class="cases-en">Website design</span>
+            </span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row gutter-42">
+        {% for cases in latest_cases_list %}
+          <div class="col-sm-4 col-xs-6 cases-list-father">
+            <a href="{% url 'work' cases.id %}">
+              <img class="img-responsive" src="{{ cases.image.url }}">
+              <div class="cases-list">
+                {% if cases.title|length > 22 %}
+                  <span class="duties">{{ cases.title|slice:":22" }}...</span><br/>
+                {% else  %}
+                  <span class="duties">{{ cases.title}}</span><br/>
+                {% endif %}
+                <span class="project">产品设计 / 视觉设计 / 功能开发</span>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>      
+    </div>
+{% endblock %}
